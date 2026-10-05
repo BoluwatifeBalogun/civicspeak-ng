@@ -272,7 +272,7 @@ Rules:
 - Respond in ${langName}${lang === "yo" ? " with correct tone marks (diacritics)" : ""}${lang === "ig" ? " with correct Igbo orthography" : ""}, in plain, respectful language a first-time user understands. Keep it under 120 words.
 - If the sources do not answer the question, say so briefly in ${langName} and advise contacting the relevant agency; do not guess.
 - Where a fee is mentioned, remind the user to confirm the current amount on the official portal.
-- Never ask for or store personal data.`;
+- Write plain sentences and simple numbered steps. Do not use markdown symbols such as **, ##, or bullet asterisks.`;
   const msgs = [
     { role: "system", content: sys },
     ...history.slice(-4).map((m) => ({ role: m.role === "user" ? "user" : "assistant", content: m.text })),
@@ -296,7 +296,8 @@ Rules:
     throw new Error(`Generation failed (${res.status}): ${detail || "check API key configuration"}`);
   }
   const data = await res.json();
-  const content = (data.choices?.[0]?.message?.content || "").trim();
+  const content = (data.choices?.[0]?.message?.content || "")
+    .replace(/\*\*|__|#+\s/g, "").trim();
   if (!content) throw new Error("Generation returned no content");
   return content;
 }
@@ -494,6 +495,17 @@ export default function IndigenousLanguageChatbot() {
     synth.speak(u);
   };
 
+  const GREET = new Set(("hi hello hey hiya yo sup howdy morning afternoon evening " +
+    "good how far wetin dey happen you na who are u claude abeg oo o una " +
+    "sannu salama barka ina kwana yaya dai lafiya kalau " +
+    "bawo e kaaro kaasan kaale pele eku se daadaa ni " +
+    "kedu ndewo ibola olaotu nnoo kee maka gi").split(/\s+/));
+  const isGreeting = (q) => {
+    const toks = q.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z\s']/g, " ").split(/\s+/).filter(Boolean);
+    return toks.length > 0 && toks.length <= 5 && toks.every((t) => GREET.has(t));
+  };
+
   async function ask(raw) {
     const query = raw.trim();
     if (!query || busy) return;
@@ -504,6 +516,16 @@ export default function IndigenousLanguageChatbot() {
     setBusy(true);
     const t0 = performance.now();
     const L = langRef.current;
+    if (isGreeting(query)) {
+      const greetMsg = { role: "bot", text: T[L].hello, sources: [], ms: 0 };
+      setMessages((m) => {
+        const next = [...m, greetMsg];
+        if (wasVoice) setTimeout(() => speak(greetMsg.text, next.length - 1), 250);
+        return next;
+      });
+      setBusy(false);
+      return;
+    }
     try {
       const hits = retrieve(index, KB, query, 4);
       let botMsg;
