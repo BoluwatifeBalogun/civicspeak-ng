@@ -290,8 +290,15 @@ Rules:
       : { messages: msgs }
   );
   const res = await fetch(url, { method: "POST", headers, body });
+  if (!res.ok) {
+    let detail = "";
+    try { const err = await res.json(); detail = err?.error?.message || err?.error || ""; } catch {}
+    throw new Error(`Generation failed (${res.status}): ${detail || "check API key configuration"}`);
+  }
   const data = await res.json();
-  return (data.choices?.[0]?.message?.content || "").trim();
+  const content = (data.choices?.[0]?.message?.content || "").trim();
+  if (!content) throw new Error("Generation returned no content");
+  return content;
 }
 
 /* ---------- UI STRINGS (language parity across all five) ---------- */
@@ -515,8 +522,9 @@ export default function IndigenousLanguageChatbot() {
         if (wasVoice) setTimeout(() => speak(botMsg.text, next.length - 1), 250);
         return next;
       });
-    } catch {
-      setMessages((m) => [...m, { role: "bot", text: T[L].error, sources: [], ms: 0 }]);
+    } catch (err) {
+      const hint = err && err.message && err.message.startsWith("Generation") ? `\n(${err.message})` : "";
+      setMessages((m) => [...m, { role: "bot", text: T[L].error + hint, sources: [], ms: 0 }]);
     }
     setBusy(false);
   }
