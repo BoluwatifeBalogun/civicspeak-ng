@@ -286,7 +286,7 @@ Rules:
   if (devKey) headers["Authorization"] = `Bearer ${devKey}`;
   const body = JSON.stringify(
     devKey
-      ? { model: "llama-3.3-70b-versatile", max_tokens: 1000, temperature: 0.3, messages: msgs }
+      ? { model: import.meta.env?.VITE_GROQ_MODEL || "openai/gpt-oss-120b", max_tokens: 1000, temperature: 0.3, messages: msgs }
       : { messages: msgs }
   );
   const res = await fetch(url, { method: "POST", headers, body });
