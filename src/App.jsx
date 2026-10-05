@@ -185,10 +185,19 @@ const STOP = new Set(("how much many is are the a an do i my me you we what whic
   "kedu ka m ga esi si e nke ndi ma bu obula gi anyi ihe onye " +
   "ah oh please abeg biko jowo don").split(/\s+/));
 
-const ANCHORS = new Set(("nin nimc enrolment enrollment " +
-  "passport fasfo irinna paspotu immigration nis " +
-  "licence license lasin tuki iwako ugbo driver driving frsc " +
-  "birth haihuwa ibi omumu pikin born npc certificate takardar attestation").split(/\s+/));
+/* Per-domain anchor terms: when a query names a domain, retrieval is
+   routed to that domain only, so a rare token in another domain's entry
+   can't hijack the ranking ("collect" in a licence entry vs "NIN"). */
+const DOMAIN_ANCHORS = {
+  nin: "nin nimc".split(" "),
+  passport: "passport fasfo irinna paspotu immigration nis".split(" "),
+  licence: "licence license lasin tuki iwako ugbo driver driving frsc".split(" "),
+  birth: "birth haihuwa omumu pikin born npc ibi".split(" "),
+};
+const ANCHORS = new Set([
+  ...Object.values(DOMAIN_ANCHORS).flat(),
+  "enrolment", "enrollment", "certificate", "takardar", "attestation",
+]);
 
 const tokenize = (s) =>
   s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -239,6 +248,8 @@ function retrieve(index, entries, query, k = 4) {
   if (!toks.length) return [];
   toks = toks.map((t) => (index.df[t] ? t : repairToken(t, index.vocab)));
   const hasAnchor = toks.some((t) => ANCHORS.has(t));
+  const routed = Object.keys(DOMAIN_ANCHORS).filter((d) =>
+    toks.some((t) => DOMAIN_ANCHORS[d].includes(t)));
   const tf = {};
   toks.forEach((t) => (tf[t] = (tf[t] || 0) + 1));
   const qv = {}; let qnorm = 0;
@@ -247,13 +258,18 @@ function retrieve(index, entries, query, k = 4) {
     qv[t] = w; qnorm += w * w;
   }
   qnorm = Math.sqrt(qnorm) || 1;
-  const scored = entries.map((e, i) => {
+  let scored = entries.map((e, i) => {
     let dot = 0;
     for (const t in qv) if (index.vecs[i].v[t]) dot += qv[t] * index.vecs[i].v[t];
     return { entry: e, score: dot / (qnorm * index.vecs[i].norm) };
   });
+  if (routed.length) scored = scored.filter((x) => routed.includes(x.entry.domain));
   scored.sort((a, b) => b.score - a.score);
-  const top = scored.slice(0, k).filter((s) => s.score > 0.08);
+  /* A query that explicitly names a domain has already proven relevance,
+     so the score floor is lenient there; unrouted queries keep the
+     stricter floor that powers the out-of-scope fallback. */
+  const floor = routed.length ? 0.01 : 0.08;
+  const top = scored.slice(0, k).filter((s) => s.score > floor);
   if (!top.length) return [];
   return hasAnchor || top[0].score > 0.4 ? top : [];
 }
@@ -270,7 +286,7 @@ async function generateAnswer(query, retrieved, lang, history) {
 Rules:
 - Answer ONLY from the provided sources. Never invent fees, dates, or requirements.
 - Respond in ${langName}${lang === "yo" ? " with correct tone marks (diacritics)" : ""}${lang === "ig" ? " with correct Igbo orthography" : ""}, in plain, respectful language a first-time user understands. Keep it under 120 words.
-- If the sources do not answer the question, say so briefly in ${langName} and advise contacting the relevant agency; do not guess.
+- If the provided information does not answer the question, say briefly in ${langName} that you do not have that detail yet and advise contacting the relevant agency; never mention "sources", "context", or "information provided" - just speak directly to the citizen.
 - Where a fee is mentioned, remind the user to confirm the current amount on the official portal.
 - Write plain sentences and simple numbered steps. Do not use markdown symbols such as **, ##, or bullet asterisks.`;
   const msgs = [
