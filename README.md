@@ -25,11 +25,13 @@ Science).
   and edit-distance typo repair. Stands in for Supabase pgvector in the
   full design.
 - **Generation**: LLM answers grounded strictly in retrieved sources
-  (Groq-hosted Llama 3.3 70B in this build; the production design targets
+  (Groq-hosted GPT-OSS 120B in this build (model configurable via GROQ_MODEL); the production design targets
   the Gemini API - the prompt contract is identical).
-- **Voice**: Web Speech API for speech-to-text and text-to-speech, with
-  per-language recognition and graceful fallbacks. Production design uses
-  cloud ASR/TTS with native Nigerian voices.
+- **Voice**: native Nigerian speech both ways via the Spitch API - tap-to-talk
+  recording transcribed in Hausa, Yoruba, Igbo, English and Pidgin, and
+  answers read aloud by native voices (Amina, Sade, Ngozi, Lucy, Tega).
+  The browser's Web Speech API remains as automatic fallback when no
+  Spitch key is configured.
 - **Out-of-scope safety**: queries outside the four domains return a clear
   fallback message instead of a generated guess (report test case TC-03).
 
@@ -52,7 +54,7 @@ key server-side - never expose the key in client code.
 1. Push this repo to GitHub.
 2. On [vercel.com](https://vercel.com), click **Add New > Project** and
    import the repo. Vite is auto-detected; keep the defaults.
-3. Under **Environment Variables**, add `GROQ_API_KEY` with your key
+3. Under **Environment Variables**, add `GROQ_API_KEY` (generation) and `SPITCH_API_KEY` (native Nigerian voice, from spitch.app) with your keys
    (no `VITE_` prefix - this one stays on the server).
 4. Deploy. Your app gets an HTTPS URL, which is also what enables
    microphone access for the voice features.

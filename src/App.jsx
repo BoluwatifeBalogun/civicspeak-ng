@@ -303,7 +303,7 @@ async function generateAnswer(query, retrieved, lang, history) {
   const sys = `You are a public service information assistant for Nigerian citizens, covering exactly four domains: NIN enrolment (NIMC), international passports (NIS), driver's licences (FRSC), and birth registration (NPC).
 Rules:
 - Answer ONLY from the provided sources. Never invent fees, dates, or requirements.
-- Respond in ${langName}${lang === "yo" ? " with correct tone marks (diacritics)" : ""}${lang === "ig" ? " with correct Igbo orthography" : ""}, in plain, respectful language a first-time user understands. Keep it under 120 words.
+- Respond in ${langName} the way a fluent native speaker from Nigeria would phrase it: natural, idiomatic, warm and respectful, never a word-for-word translation from English.${lang === "yo" ? " Use correct Yoruba tone marks (diacritics) throughout." : ""}${lang === "ig" ? " Use correct Igbo orthography with proper dotted vowels." : ""}${lang === "ha" ? " Use natural everyday Hausa." : ""}${lang === "pcm" ? " Use authentic everyday Nigerian Pidgin, not anglicised Pidgin." : ""} Official terms like NIN, NIMC, or portal names stay as they are. Keep it under 120 words.
 - If the provided information does not answer the question, say briefly in ${langName} that you do not have that detail yet and advise contacting the relevant agency; never mention "sources", "context", or "information provided" - just speak directly to the citizen.
 - Where a fee is mentioned, remind the user to confirm the current amount on the official portal.
 - Write plain sentences and simple numbered steps. Do not use markdown symbols such as **, ##, or bullet asterisks.
@@ -346,7 +346,8 @@ const T = {
     title: "Public services, in your language",
     sub: "Verified answers on NIN, passports, driver's licences and birth registration. No middlemen.",
     placeholder: "Ask about NIN, passport, licence or birth certificate…",
-    listening: "Listening… speak now",
+    listening: "Recording… tap the mic again when you finish speaking",
+    transcribing: "Transcribing…",
     sources: "Sources",
     speak: "Read aloud", stop: "Stop reading",
     ack: "You're welcome! I'm here if you have another question about NIN, passports, driver's licences or birth registration.",
@@ -366,7 +367,8 @@ const T = {
     title: "Government service, for your own language",
     sub: "Correct answer on NIN, passport, driver license and birth certificate. No agent, no middleman.",
     placeholder: "Ask about NIN, passport, license or birth paper…",
-    listening: "I dey hear you… talk now",
+    listening: "I dey record… press the mic again when you don talk finish",
+    transcribing: "I dey write wetin you talk…",
     sources: "Where e come from",
     speak: "Make e read am", stop: "Stop am",
     ack: "No wahala! If you get another question about NIN, passport, driver license or birth certificate, I dey here.",
@@ -386,7 +388,8 @@ const T = {
     title: "Ayyukan gwamnati, cikin harshenka",
     sub: "Amsoshi ingantattu kan NIN, fasfo, lasin tuki da rijistar haihuwa. Ba tare da dan tsakani ba.",
     placeholder: "Tambaya kan NIN, fasfo, lasin ko takardar haihuwa…",
-    listening: "Ana saurare… yi magana yanzu",
+    listening: "Ana daukar murya… sake danna makirufo idan ka gama magana",
+    transcribing: "Ana rubuta abin da ka fada…",
     sources: "Majiya",
     speak: "Karanta da murya", stop: "Tsayar",
     ack: "Madalla! Idan kana da wata tambaya kan NIN, fasfo, lasin tuki ko takardar haihuwa, ina nan.",
@@ -406,7 +409,8 @@ const T = {
     title: "Iṣẹ́ ìjọba, ní èdè rẹ",
     sub: "Ìdáhùn tí ó dájú lórí NIN, ìwé ìrìnnà, ìwé àṣẹ ìwakọ̀ àti ìforúkọsílẹ̀ ibí. Láìsí alárinà.",
     placeholder: "Bèèrè nípa NIN, ìwé ìrìnnà, ìwé àṣẹ tàbí ìwé ẹ̀rí ibí…",
-    listening: "À ń gbọ́… sọ̀rọ̀ báyìí",
+    listening: "À ń gba ohùn… tẹ makirofóònù lẹ́ẹ̀kansí tí o bá parí ọ̀rọ̀",
+    transcribing: "À ń kọ ohun tí o sọ…",
     sources: "Oríṣun",
     speak: "Kà á sókè", stop: "Dáwọ́ dúró",
     ack: "Kò tọ́pẹ́! Tí o bá ní ìbéèrè mìíràn nípa NIN, ìwé ìrìnnà, ìwé àṣẹ ìwakọ̀ tàbí ìwé ẹ̀rí ibí, mo wà níbí.",
@@ -426,7 +430,8 @@ const T = {
     title: "Ọrụ gọọmenti, n'asụsụ gị",
     sub: "Azịza ziri ezi maka NIN, paspọtụ, ikike ịnya ụgbọ na ndebanye ọmụmụ. Enweghị onye etiti.",
     placeholder: "Jụọ maka NIN, paspọtụ, ikike ma ọ bụ akwụkwọ ọmụmụ…",
-    listening: "Anyị na-ege ntị… kwuo ugbu a",
+    listening: "Anyị na-edekọ olu… pịa igwe okwu ọzọ ma i kwuchaa",
+    transcribing: "Anyị na-ede ihe i kwuru…",
     sources: "Ebe o si",
     speak: "Gụọ ya n'olu", stop: "Kwụsị",
     ack: "Nsogbu adịghị! Ọ bụrụ na ị nwere ajụjụ ọzọ gbasara NIN, paspọtụ, ikike ịnya ụgbọ ma ọ bụ akwụkwọ ọmụmụ, anọ m ebe a.",
@@ -471,40 +476,113 @@ export default function IndigenousLanguageChatbot() {
   }, [messages, busy]);
 
   useEffect(() => {
-    setTtsOk(typeof window !== "undefined" && "speechSynthesis" in window);
+    setTtsOk(typeof window !== "undefined" && ("speechSynthesis" in window || true));
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    if (!SR) { setVoiceOk(false); return; }
-    const rec = new SR();
-    rec.continuous = false;
-    rec.interimResults = false;
-    rec.onresult = (e) => {
-      const text = e.results[0][0].transcript;
-      setListening(false);
-      setVoiceErr("");
-      viaVoiceRef.current = true;
-      ask(text);
-    };
-    rec.onerror = (e) => {
-      setListening(false);
-      const map = {
-        "not-allowed": "Mic blocked. Allow microphone access for this page, then try again.",
-        "service-not-allowed": "Mic blocked by the browser or app. Try opening in Chrome and allowing the microphone.",
-        "audio-capture": "No microphone found on this device.",
-        "no-speech": "Didn't catch any speech. Tap the mic and speak clearly.",
-        "network": "Speech recognition needs an internet connection.",
-        "language-not-supported": "This browser can't recognise the selected language yet. English works everywhere.",
-        "aborted": "",
+    const hasRecorder = typeof window !== "undefined" && navigator.mediaDevices && window.MediaRecorder;
+    if (!SR && !hasRecorder) { setVoiceOk(false); return; }
+    if (SR) {
+      const rec = new SR();
+      rec.continuous = false;
+      rec.interimResults = false;
+      rec.onresult = (e) => {
+        const text = e.results[0][0].transcript;
+        setListening(false);
+        setVoiceErr("");
+        viaVoiceRef.current = true;
+        ask(text);
       };
-      setVoiceErr(e && e.error in map ? map[e.error] : `Mic error: ${e && e.error ? e.error : "unknown"}`);
-    };
-    rec.onend = () => setListening(false);
-    recRef.current = rec;
+      rec.onerror = (e) => {
+        setListening(false);
+        const map = {
+          "not-allowed": "Mic blocked. Allow microphone access for this page, then try again.",
+          "service-not-allowed": "Mic blocked by the browser or app. Try opening in Chrome and allowing the microphone.",
+          "audio-capture": "No microphone found on this device.",
+          "no-speech": "Didn't catch any speech. Tap the mic and speak clearly.",
+          "network": "Speech recognition needs an internet connection.",
+          "language-not-supported": "This browser can't recognise the selected language yet.",
+          "aborted": "",
+        };
+        setVoiceErr(e && e.error in map ? map[e.error] : `Mic error: ${e && e.error ? e.error : "unknown"}`);
+      };
+      rec.onend = () => setListening(false);
+      recRef.current = rec;
+    }
     return () => { try { window.speechSynthesis.cancel(); } catch {} };
   }, []);
 
-  const startVoice = () => {
-    if (!recRef.current || busy) return;
-    setVoiceErr("");
+  /* ---- Tap-to-talk recording for Spitch STT (native Nigerian-language
+     recognition). The user controls when recording stops, so speech is
+     never cut off mid-sentence. Recorded audio is decoded and re-encoded
+     as 16 kHz mono WAV, which Spitch accepts from every browser. ---- */
+  const mediaRef = useRef(null);
+  const chunksRef = useRef([]);
+  const cloudSttOk = useRef(true);
+  const [transcribing, setTranscribing] = useState(false);
+
+  async function blobToWavBase64(blob) {
+    const arr = await blob.arrayBuffer();
+    const AC = window.AudioContext || window.webkitAudioContext;
+    const probe = new AC();
+    const decoded = await probe.decodeAudioData(arr.slice(0));
+    probe.close();
+    const rate = 16000;
+    const off = new OfflineAudioContext(1, Math.ceil(decoded.duration * rate), rate);
+    const srcNode = off.createBufferSource();
+    srcNode.buffer = decoded; srcNode.connect(off.destination); srcNode.start();
+    const rendered = await off.startRendering();
+    const pcm = rendered.getChannelData(0);
+    const buf = new ArrayBuffer(44 + pcm.length * 2);
+    const v = new DataView(buf);
+    const ws = (o, str) => { for (let i = 0; i < str.length; i++) v.setUint8(o + i, str.charCodeAt(i)); };
+    ws(0, "RIFF"); v.setUint32(4, 36 + pcm.length * 2, true); ws(8, "WAVE");
+    ws(12, "fmt "); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, 1, true);
+    v.setUint32(24, rate, true); v.setUint32(28, rate * 2, true); v.setUint16(32, 2, true); v.setUint16(34, 16, true);
+    ws(36, "data"); v.setUint32(40, pcm.length * 2, true);
+    for (let i = 0; i < pcm.length; i++) {
+      const x = Math.max(-1, Math.min(1, pcm[i]));
+      v.setInt16(44 + i * 2, x < 0 ? x * 0x8000 : x * 0x7fff, true);
+    }
+    const bytes = new Uint8Array(buf);
+    let bin = ""; const CH = 0x8000;
+    for (let i = 0; i < bytes.length; i += CH) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + CH));
+    return btoa(bin);
+  }
+
+  async function stopRecording() {
+    const m = mediaRef.current;
+    if (!m) return;
+    mediaRef.current = null;
+    setListening(false);
+    await new Promise((resolve) => { m.rec.onstop = resolve; try { m.rec.stop(); } catch { resolve(); } });
+    m.stream.getTracks().forEach((t) => t.stop());
+    clearTimeout(m.safety);
+    const blob = new Blob(chunksRef.current, { type: m.rec.mimeType || "audio/webm" });
+    chunksRef.current = [];
+    if (blob.size < 2000) { setVoiceErr("Didn't catch any speech. Tap the mic, speak, then tap again to stop."); return; }
+    setTranscribing(true);
+    try {
+      const audio = await blobToWavBase64(blob);
+      const r = await fetch("/api/stt", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ audio, lang: langRef.current }),
+      });
+      if (!r.ok) throw new Error("stt " + r.status);
+      const data = await r.json();
+      const text = (data.text || "").trim();
+      setTranscribing(false);
+      if (!text) { setVoiceErr("Didn't catch any speech. Please try again."); return; }
+      viaVoiceRef.current = true;
+      ask(text);
+    } catch {
+      setTranscribing(false);
+      cloudSttOk.current = false;
+      setVoiceErr("Native speech service unavailable; using the browser recogniser instead.");
+      startWebkit();
+    }
+  }
+
+  const startWebkit = () => {
+    if (!recRef.current) { setVoiceErr("Voice input isn't available in this browser. Typing still works."); return; }
     try {
       recRef.current.lang = STT_LANG[langRef.current];
       recRef.current.start();
@@ -512,15 +590,49 @@ export default function IndigenousLanguageChatbot() {
     } catch { setListening(false); }
   };
 
-  /* Text-to-speech: prefer a device voice matching the language,
-     fall back to any English voice (browser gap for ha/yo/ig —
-     production uses cloud TTS with Nigerian voices). */
-  const speak = (text, idx) => {
-    if (!ttsOk) return;
+  async function startRecording() {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const rec = new MediaRecorder(stream);
+      chunksRef.current = [];
+      rec.ondataavailable = (e) => { if (e.data && e.data.size) chunksRef.current.push(e.data); };
+      rec.start();
+      const safety = setTimeout(() => stopRecording(), 60000); // 60s cap
+      mediaRef.current = { rec, stream, safety };
+      setListening(true);
+    } catch {
+      setVoiceErr("Mic blocked. Allow microphone access for this page, then try again.");
+    }
+  }
+
+  const startVoice = () => {
+    if (busy || transcribing) return;
+    setVoiceErr("");
+    if (listening) { // tap again = stop
+      if (mediaRef.current) stopRecording();
+      else { try { recRef.current && recRef.current.stop(); } catch {} setListening(false); }
+      return;
+    }
+    if (cloudSttOk.current && navigator.mediaDevices && window.MediaRecorder) startRecording();
+    else startWebkit();
+  };
+
+  /* Text-to-speech: Spitch native Nigerian voices via /api/tts, with the
+     browser's speechSynthesis as automatic fallback (dev without a key,
+     or network failure). Audio is cached per message after first play. */
+  const audioRef = useRef(null);
+  const ttsCache = useRef({});
+  const cloudTtsOk = useRef(true);
+
+  const stopAudio = () => {
+    if (audioRef.current) { try { audioRef.current.pause(); } catch {} audioRef.current = null; }
+    try { window.speechSynthesis.cancel(); } catch {}
+    setSpeakingIdx(-1);
+  };
+
+  const browserSpeak = (clean, idx) => {
+    if (!("speechSynthesis" in window)) { setSpeakingIdx(-1); return; }
     const synth = window.speechSynthesis;
-    if (speakingIdx === idx) { synth.cancel(); setSpeakingIdx(-1); return; }
-    synth.cancel();
-    const clean = text.replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF]/gu, "");
     const u = new SpeechSynthesisUtterance(clean);
     const want = TTS_LANG[langRef.current];
     const voices = synth.getVoices();
@@ -529,12 +641,40 @@ export default function IndigenousLanguageChatbot() {
       voices.find((v) => v.lang.toLowerCase().startsWith(want.split("-")[0])) ||
       voices.find((v) => v.lang.toLowerCase().startsWith("en"));
     if (match) u.voice = match;
-    u.lang = want;
-    u.rate = 0.95;
+    u.lang = want; u.rate = 0.95;
     u.onend = () => setSpeakingIdx(-1);
     u.onerror = () => setSpeakingIdx(-1);
-    setSpeakingIdx(idx);
     synth.speak(u);
+  };
+
+  const speak = async (text, idx) => {
+    if (speakingIdx === idx) { stopAudio(); return; }
+    stopAudio();
+    const clean = text.replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF]/gu, "");
+    setSpeakingIdx(idx);
+    const L = langRef.current;
+    const key = `${L}:${idx}:${clean.slice(0, 40)}`;
+    try {
+      if (!cloudTtsOk.current) throw new Error("cloud tts disabled");
+      let url = ttsCache.current[key];
+      if (!url) {
+        const r = await fetch("/api/tts", {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: clean, lang: L }),
+        });
+        if (!r.ok) throw new Error("tts " + r.status);
+        url = URL.createObjectURL(await r.blob());
+        ttsCache.current[key] = url;
+      }
+      const a = new Audio(url);
+      audioRef.current = a;
+      a.onended = () => setSpeakingIdx(-1);
+      a.onerror = () => setSpeakingIdx(-1);
+      await a.play();
+    } catch {
+      cloudTtsOk.current = false; // stop retrying a dead endpoint this session
+      browserSpeak(clean, idx);
+    }
   };
 
   const GREET = new Set(("hi hello hey hiya yo sup howdy morning afternoon evening " +
@@ -748,6 +888,7 @@ export default function IndigenousLanguageChatbot() {
 
         <div className="bar">
           {listening && <div className="listen">🎙 {t.listening}</div>}
+          {transcribing && <div className="listen">✍ {t.transcribing}</div>}
           {!listening && voiceErr && <div className="listen" style={{ color: "#A33A2E" }}>{voiceErr}</div>}
           {!voiceOk && <div className="listen" style={{ color: "#8A968D" }}>Voice input isn't supported in this browser (try Chrome). Typing and read-aloud still work.</div>}
           <div className="barin">
