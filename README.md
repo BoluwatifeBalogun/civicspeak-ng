@@ -1,8 +1,9 @@
 # CivicSpeak NG - Indigenous Language Chatbot for Public Services
 
 A Retrieval-Augmented Generation (RAG) chatbot giving Nigerian citizens
-verified public service information in **English, Nigerian Pidgin, Hausa,
-Yoruba and Igbo**, with voice input (speech-to-text) and read-aloud
+verified public service information in **English, Nigerian Pidgin and
+Yorùbá** (with automatic language detection, and Hausa/Igbo knowledge retained
+for a later release), with voice input (speech-to-text) and read-aloud
 answers (text-to-speech).
 
 Implementation of the HND seminar project *Indigenous Language Chatbot
@@ -17,6 +18,8 @@ Science).
 | International passport | NIS |
 | Driver's licence | FRSC |
 | Birth registration | NPC |
+| Education (UTME registration, result checking) | JAMB, WAEC |
+| Health (insurance enrolment, immunization, PHC services) | NHIA, NPHCDA |
 
 ## Architecture
 

@@ -182,6 +182,79 @@ const KB = [
     a: "Na for NPC office dem dey register pikin, plenty of dem dey inside hospital and local government office. If you register am within the first 60 days, na free. Papa or mama go carry the hospital paper and their own ID go there, NPC go give dem the birth certificate.",
     kw: "register pikin born pidgin birth certificate free npc hospital",
     src: "https://nationalpopulation.gov.ng/" },
+  // ---------------- Education / JAMB + WAEC ----------------
+  { id: "ed-01", domain: "education", agency: "JAMB", lang: "en",
+    q: "How do I register for JAMB UTME?",
+    a: "Create a profile on the JAMB portal using your NIN and the phone number linked to it, buy the official e-PIN through accredited channels, then complete registration at an accredited CBT centre where your biometrics are captured and you choose your courses and institutions. You receive a registration slip with your exam details. Register only through accredited centres and confirm the current fee on the JAMB portal.",
+    kw: "jamb utme register registration exam admission university polytechnic cbt profile epin how person go take forukosile idanwo fun jamb school",
+    src: "https://www.jamb.gov.ng/" },
+  { id: "ed-02", domain: "education", agency: "WAEC", lang: "en",
+    q: "How do I check my WAEC result?",
+    a: "Go to the official WAEC result portal (waecdirect.org), enter your examination number, your exam year and type, and the result checker PIN and serial number from an official WAEC result checker card. Buy the checker card only from official channels, and avoid third-party sites that ask for extra fees.",
+    kw: "waec result check ssce wassce pin scratch card serial waecdirect esi how i go take check my waec ayewo",
+    src: "https://www.waecdirect.org/" },
+  { id: "ed-03", domain: "education", agency: "JAMB", lang: "en",
+    q: "How do I check my JAMB result and admission status?",
+    a: "Check your UTME result by sending RESULT to 55019 or 66019 from the phone number you used for registration, or log in to your JAMB profile on the portal. Your admission status is checked through CAPS (Central Admission Processing System) on the same JAMB portal, where you can also accept or reject an admission offer.",
+    kw: "jamb result admission status caps 55019 66019 check accept offer utme score esi",
+    src: "https://www.jamb.gov.ng/" },
+  { id: "ed-04", domain: "education", agency: "JAMB", lang: "pcm",
+    q: "How person go take register for JAMB?",
+    a: "First create profile for JAMB portal with your NIN and the phone number wey dey your NIN. Buy the official e-PIN from accredited channel, then go accredited CBT centre make dem snap you, take your fingerprint and help you choose school and course. Dem go give you registration slip. No pay any agent o, and confirm the correct money for JAMB portal.",
+    kw: "jamb register pidgin how person go take cbt centre epin school course",
+    src: "https://www.jamb.gov.ng/" },
+  { id: "ed-05", domain: "education", agency: "WAEC", lang: "pcm",
+    q: "How I go take check my WAEC result?",
+    a: "Go the official WAEC result site (waecdirect.org), put your exam number, the year and exam type, then the PIN and serial number from official WAEC result checker card. Buy the checker card only from official place, no use website wey dey ask extra money.",
+    kw: "waec result check pidgin how i go take pin scratch card",
+    src: "https://www.waecdirect.org/" },
+  { id: "ed-06", domain: "education", agency: "JAMB", lang: "yo",
+    q: "Báwo ni mo ṣe lè forúkọsílẹ̀ fún JAMB?",
+    a: "Kọ́kọ́ ṣe profaili rẹ lórí ojú òpó JAMB pẹ̀lú NIN rẹ àti nọ́mbà fóònù tí ó so mọ́ ọn. Ra e-PIN oníbiṣẹ́ láti ọ̀nà tí a fọwọ́ sí, kí o sì parí ìforúkọsílẹ̀ ní ilé-iṣẹ́ CBT tí a fọwọ́ sí, níbi tí wọn yóò ti ya àwòrán rẹ, gba ìka ọwọ́ rẹ, tí o sì máa yan ilé-ẹ̀kọ́ àti ẹ̀kọ́ rẹ. Wọn yóò fún ọ ní ìwé ìforúkọsílẹ̀. Má san owó fún alárinà; ṣàyẹ̀wò iye owó lórí ojú òpó JAMB.",
+    kw: "jamb forukosile yoruba iforukosile idanwo ile eko cbt",
+    src: "https://www.jamb.gov.ng/" },
+  { id: "ed-07", domain: "education", agency: "WAEC", lang: "yo",
+    q: "Báwo ni mo ṣe lè ṣàyẹ̀wò èsì WAEC mi?",
+    a: "Lọ sí ojú òpó èsì WAEC oníbiṣẹ́ (waecdirect.org), tẹ nọ́mbà ìdánwò rẹ, ọdún àti irú ìdánwò náà, àti PIN pẹ̀lú nọ́mbà sẹ́ríà láti ara káàdì aṣàyẹ̀wò èsì WAEC oníbiṣẹ́. Ra káàdì náà láti ọ̀nà oníbiṣẹ́ nìkan; yẹra fún àwọn ojú òpó mìíràn tí ń béèrè owó àfikún.",
+    kw: "waec esi ayewo yoruba sayewo idanwo pin kaadi",
+    src: "https://www.waecdirect.org/" },
+
+  // ---------------- Healthcare / NHIA + NPHCDA ----------------
+  { id: "he-01", domain: "health", agency: "NHIA", lang: "en",
+    q: "How do I enrol for national health insurance (NHIA)?",
+    a: "If you work in the formal sector, you enrol through your employer under the NHIA (formerly NHIS) scheme. If you are self-employed or in the informal sector, enrol through your state health insurance agency or an NHIA-accredited HMO: choose a plan, pay the premium, and select an accredited primary healthcare facility where you will receive care. Confirm current premiums with the NHIA or your state scheme.",
+    kw: "nhia nhis health insurance enrol enrollment hmo premium hospital cover healthcare how person go take ilera inawo join",
+    src: "https://www.nhia.gov.ng/" },
+  { id: "he-02", domain: "health", agency: "NPHCDA", lang: "en",
+    q: "Where can I get free immunization for my child?",
+    a: "Routine childhood immunization is free at government primary healthcare centres nationwide, following the NPHCDA schedule that runs from birth (BCG, OPV) through 9 months (measles, yellow fever). Take your child with their immunization card on the centre's immunization days, and the health workers will record each vaccine and tell you the next date.",
+    kw: "immunization immunisation vaccine vaccination baby child pikin free phc ajesara abere card measles polio schedule ofe",
+    src: "https://nphcda.gov.ng/" },
+  { id: "he-03", domain: "health", agency: "NPHCDA", lang: "en",
+    q: "What services do primary healthcare centres offer?",
+    a: "Primary healthcare centres offer free or low-cost basic services: antenatal and postnatal care, safe delivery in many centres, routine immunization, malaria testing and treatment, family planning, treatment of common illnesses, and health education. They are the first point of care; serious cases are referred to general hospitals.",
+    kw: "phc primary health care centre services antenatal malaria family planning clinic hospital asibiti ile iwosan dokita pregnant",
+    src: "https://nphcda.gov.ng/" },
+  { id: "he-04", domain: "health", agency: "NHIA", lang: "pcm",
+    q: "How person go take join national health insurance?",
+    a: "If you dey work for company or government, na through your employer you go join the NHIA scheme. If you dey work for yourself, go your state health insurance agency or NHIA-accredited HMO: choose plan, pay the premium, then pick the hospital or health centre wey dem accredit where you go dey collect care. Confirm the correct premium from NHIA or your state scheme.",
+    kw: "nhia health insurance pidgin join how person go take hmo premium hospital",
+    src: "https://www.nhia.gov.ng/" },
+  { id: "he-05", domain: "health", agency: "NPHCDA", lang: "pcm",
+    q: "Where I fit collect free immunization for my pikin?",
+    a: "Na for government primary healthcare centre dem dey give pikin immunization free, from when dem born am (BCG, OPV) till 9 months (measles, yellow fever). Carry your pikin with the immunization card go the centre on their immunization day; the health workers go write each vaccine inside and tell you the next date.",
+    kw: "immunization pikin free pidgin vaccine phc centre collect",
+    src: "https://nphcda.gov.ng/" },
+  { id: "he-06", domain: "health", agency: "NHIA", lang: "yo",
+    q: "Báwo ni mo ṣe lè darapọ̀ mọ́ ìnáwó ìlera orílẹ̀-èdè (NHIA)?",
+    a: "Tí o bá ń ṣiṣẹ́ ní ilé-iṣẹ́, nípasẹ̀ agbanisíṣẹ́ rẹ ni o ti máa darapọ̀ mọ́ ètò NHIA. Tí o bá ń ṣiṣẹ́ fún ara rẹ, lọ sí àjọ ìnáwó ìlera ìpínlẹ̀ rẹ tàbí HMO tí NHIA fọwọ́ sí: yan ètò kan, san owó rẹ̀, kí o sì yan ilé-ìwòsàn tí a fọwọ́ sí níbi tí o ti máa gba ìtọ́jú. Ṣàyẹ̀wò iye owó lọ́wọ́lọ́wọ́ láti ọ̀dọ̀ NHIA tàbí ètò ìpínlẹ̀ rẹ.",
+    kw: "nhia ilera inawo yoruba darapo hmo ile iwosan",
+    src: "https://www.nhia.gov.ng/" },
+  { id: "he-07", domain: "health", agency: "NPHCDA", lang: "yo",
+    q: "Níbo ni mo ti lè gba abẹ́rẹ́ àjẹsára ọ̀fẹ́ fún ọmọ mi?",
+    a: "Ọ̀fẹ́ ni abẹ́rẹ́ àjẹsára ọmọdé ní àwọn ilé-ìwòsàn alákọ̀ọ́bẹ̀rẹ̀ ti ìjọba jákèjádò orílẹ̀-èdè, láti ìgbà ìbí (BCG, OPV) títí di oṣù mẹ́sàn-án (measles, yellow fever). Mú ọmọ rẹ pẹ̀lú káàdì àjẹsára rẹ̀ lọ ní ọjọ́ àjẹsára ilé-ìwòsàn náà; àwọn òṣìṣẹ́ ìlera yóò kọ abẹ́rẹ́ kọ̀ọ̀kan sílẹ̀, wọn yóò sì sọ ọjọ́ tí ó kàn fún ọ.",
+    kw: "ajesara abere omo ofe yoruba ile iwosan ilera kaadi nibo",
+    src: "https://nphcda.gov.ng/" },
 ];
 
 /* ---------- RETRIEVAL LAYER (pgvector cosine-similarity stand-in) ----------
@@ -209,6 +282,8 @@ const DOMAIN_ANCHORS = {
   passport: "passport fasfo irinna paspotu immigration nis".split(" "),
   licence: "licence license lasin tuki iwako ugbo driver driving frsc".split(" "),
   birth: "birth haihuwa omumu born npc ibi".split(" "),
+  education: "jamb waec utme neco ssce wassce exam examination result admission university polytechnic cbt idanwo esi waecdirect".split(" "),
+  health: "health healthcare hospital clinic nhia nhis insurance immunization immunisation vaccine vaccination antenatal malaria phc ilera ajesara dokita iwosan".split(" "),
 };
 const ANCHORS = new Set([
   ...Object.values(DOMAIN_ANCHORS).flat(),
@@ -293,14 +368,14 @@ function retrieve(index, entries, query, k = 4) {
 }
 
 /* ---------- GENERATION LAYER (Gemini stand-in; identical prompt contract) ---------- */
-const LANG_NAME = { en: "English", pcm: "Nigerian Pidgin", ha: "Hausa", yo: "Yoruba", ig: "Igbo" };
+const LANG_NAME = { en: "English", pcm: "Nigerian Pidgin", yo: "Yoruba" };
 
 async function generateAnswer(query, retrieved, lang, history) {
   const context = retrieved
     .map((r, i) => `[Source ${i + 1} | ${r.entry.agency} | ${r.entry.src}]\nQ: ${r.entry.q}\nA: ${r.entry.a}`)
     .join("\n\n");
   const langName = LANG_NAME[lang];
-  const sys = `You are a public service information assistant for Nigerian citizens, covering exactly four domains: NIN enrolment (NIMC), international passports (NIS), driver's licences (FRSC), and birth registration (NPC).
+  const sys = `You are a public service information assistant for Nigerian citizens, covering exactly six domains: NIN enrolment (NIMC), international passports (NIS), driver's licences (FRSC), birth registration (NPC), education services such as JAMB and WAEC, and public health services such as NHIA insurance and immunization (NPHCDA).
 Rules:
 - Answer ONLY from the provided sources. Never invent fees, dates, or requirements.
 - Respond in ${langName} the way a fluent native speaker from Nigeria would phrase it: natural, idiomatic, warm and respectful, never a word-for-word translation from English.${lang === "yo" ? " Use correct Yoruba tone marks (diacritics) throughout." : ""}${lang === "ig" ? " Use correct Igbo orthography with proper dotted vowels." : ""}${lang === "ha" ? " Use natural everyday Hausa." : ""}${lang === "pcm" ? " Use authentic everyday Nigerian Pidgin, not anglicised Pidgin." : ""} Official terms like NIN, NIMC, or portal names stay as they are. Keep it under 120 words.
@@ -344,14 +419,14 @@ const T = {
   en: {
     label: "English",
     title: "Public services, in your language",
-    sub: "Verified answers on NIN, passports, driver's licences and birth registration. No middlemen.",
-    placeholder: "Ask about NIN, passport, licence or birth certificate…",
+    sub: "Verified answers on NIN, passports, driver's licences, birth registration, education and health services. No middlemen.",
+    placeholder: "Ask about NIN, passport, licence, birth, JAMB/WAEC or health…",
     listening: "Recording… tap the mic again when you finish speaking",
     transcribing: "Transcribing…",
     sources: "Sources",
     speak: "Read aloud", stop: "Stop reading",
-    ack: "You're welcome! I'm here if you have another question about NIN, passports, driver's licences or birth registration.",
-    fallback: "That's outside what I can help with. I only cover NIN enrolment, international passports, driver's licences and birth registration. For other matters, please contact the relevant agency directly.",
+    ack: "You're welcome! I'm here if you have another question about NIN, passports, licences, birth registration, education or health services.",
+    fallback: "That's outside what I can help with. I cover NIN enrolment, international passports, driver's licences, birth registration, education (JAMB and WAEC) and public health services. For other matters, please contact the relevant agency directly.",
     error: "Something went wrong reaching the answer service. Check your connection and try again.",
     disclaimer: "Grounded in official agency content · Verify fees on official portals · Demo build",
     domains: [
@@ -359,20 +434,22 @@ const T = {
       { d: "passport", t: "Int'l passport", a: "NIS", q: "How do I apply for an international passport?" },
       { d: "licence", t: "Driver's licence", a: "FRSC", q: "How do I get a new driver's licence?" },
       { d: "birth", t: "Birth certificate", a: "NPC", q: "How do I register a birth?" },
+      { d: "education", t: "JAMB & WAEC", a: "JAMB", q: "How do I register for JAMB UTME?" },
+      { d: "health", t: "Health services", a: "NHIA", q: "How do I enrol for national health insurance?" },
     ],
-    hello: "Welcome! Ask me anything about the four services below — typed or by voice. Tap the speaker on any answer to hear it read aloud.",
+    hello: "Welcome! Ask me anything about the six services below, typed or by voice. Tap the speaker on any answer to hear it read aloud.",
   },
   pcm: {
     label: "Pidgin",
     title: "Government service, for your own language",
-    sub: "Correct answer on NIN, passport, driver license and birth certificate. No agent, no middleman.",
-    placeholder: "Ask about NIN, passport, license or birth paper…",
+    sub: "Correct answer on NIN, passport, driver license, birth certificate, school matter and health. No agent, no middleman.",
+    placeholder: "Ask about NIN, passport, license, birth paper, JAMB/WAEC or health…",
     listening: "I dey record… press the mic again when you don talk finish",
     transcribing: "I dey write wetin you talk…",
     sources: "Where e come from",
     speak: "Make e read am", stop: "Stop am",
-    ack: "No wahala! If you get another question about NIN, passport, driver license or birth certificate, I dey here.",
-    fallback: "Dat one pass wetin I fit help with. Na only NIN, international passport, driver license and birth registration I sabi. For other matter, abeg meet the agency wey concern am direct.",
+    ack: "No wahala! If you get another question about NIN, passport, license, birth certificate, school matter or health, I dey here.",
+    fallback: "Dat one pass wetin I fit help with. Na NIN, international passport, driver license, birth registration, education (JAMB and WAEC) and health service I sabi. For other matter, abeg meet the agency wey concern am direct.",
     error: "Something spoil as I dey find the answer. Check your network make you try again.",
     disclaimer: "Answer dey come from official agency info · Confirm money for official portal · Na demo",
     domains: [
@@ -380,41 +457,22 @@ const T = {
       { d: "passport", t: "Passport", a: "NIS", q: "How person go take apply for international passport?" },
       { d: "licence", t: "Driver license", a: "FRSC", q: "How I go take get driver license?" },
       { d: "birth", t: "Birth certificate", a: "NPC", q: "How dem dey register pikin wey dem born?" },
+      { d: "education", t: "JAMB & WAEC", a: "JAMB", q: "How person go take register for JAMB?" },
+      { d: "health", t: "Health matter", a: "NHIA", q: "How person go take join national health insurance?" },
     ],
-    hello: "How far! Ask me anything about the four services wey dey down so — type am or talk am. Press the speaker for any answer make you hear am with ear.",
-  },
-  ha: {
-    label: "Hausa",
-    title: "Ayyukan gwamnati, cikin harshenka",
-    sub: "Amsoshi ingantattu kan NIN, fasfo, lasin tuki da rijistar haihuwa. Ba tare da dan tsakani ba.",
-    placeholder: "Tambaya kan NIN, fasfo, lasin ko takardar haihuwa…",
-    listening: "Ana daukar murya… sake danna makirufo idan ka gama magana",
-    transcribing: "Ana rubuta abin da ka fada…",
-    sources: "Majiya",
-    speak: "Karanta da murya", stop: "Tsayar",
-    ack: "Madalla! Idan kana da wata tambaya kan NIN, fasfo, lasin tuki ko takardar haihuwa, ina nan.",
-    fallback: "Wannan ya wuce iyakar aikina. Ina taimako ne kawai kan rijistar NIN, fasfo, lasin tuki da rijistar haihuwa. Don wasu batutuwa, tuntubi hukumar da abin ya shafa kai tsaye.",
-    error: "An samu matsala wajen samun amsa. Duba intanet dinka ka sake gwadawa.",
-    disclaimer: "An gina amsoshi daga bayanan hukumomi · Tabbatar da kudade a shafukan hukuma · Gwajin tsari ne",
-    domains: [
-      { d: "nin", t: "Rijistar NIN", a: "NIMC", q: "Yaya ake yin rijistar NIN?" },
-      { d: "passport", t: "Fasfo", a: "NIS", q: "Yaya ake neman fasfo na kasa da kasa?" },
-      { d: "licence", t: "Lasin tuki", a: "FRSC", q: "Yaya ake samun lasin tuki?" },
-      { d: "birth", t: "Takardar haihuwa", a: "NPC", q: "Yaya ake yin rijistar haihuwa?" },
-    ],
-    hello: "Sannu da zuwa! Tambaye ni komai kan ayyukan nan guda hudu — ta rubutu ko ta murya. Danna alamar lasifika a kowace amsa domin jin ta da murya.",
+    hello: "How far! Ask me anything about the six services wey dey down so, type am or talk am. Press the speaker for any answer make you hear am with ear.",
   },
   yo: {
     label: "Yorùbá",
     title: "Iṣẹ́ ìjọba, ní èdè rẹ",
-    sub: "Ìdáhùn tí ó dájú lórí NIN, ìwé ìrìnnà, ìwé àṣẹ ìwakọ̀ àti ìforúkọsílẹ̀ ibí. Láìsí alárinà.",
-    placeholder: "Bèèrè nípa NIN, ìwé ìrìnnà, ìwé àṣẹ tàbí ìwé ẹ̀rí ibí…",
+    sub: "Ìdáhùn tí ó dájú lórí NIN, ìwé ìrìnnà, ìwé àṣẹ ìwakọ̀, ìforúkọsílẹ̀ ibí, ẹ̀kọ́ àti ìlera. Láìsí alárinà.",
+    placeholder: "Bèèrè nípa NIN, ìwé ìrìnnà, ìwé àṣẹ, ibí, JAMB/WAEC tàbí ìlera…",
     listening: "À ń gba ohùn… tẹ makirofóònù lẹ́ẹ̀kansí tí o bá parí ọ̀rọ̀",
     transcribing: "À ń kọ ohun tí o sọ…",
     sources: "Oríṣun",
     speak: "Kà á sókè", stop: "Dáwọ́ dúró",
-    ack: "Kò tọ́pẹ́! Tí o bá ní ìbéèrè mìíràn nípa NIN, ìwé ìrìnnà, ìwé àṣẹ ìwakọ̀ tàbí ìwé ẹ̀rí ibí, mo wà níbí.",
-    fallback: "Èyí kọjá ohun tí mo lè ràn ọ́ lọ́wọ́ lórí rẹ̀. NIN, ìwé ìrìnnà, ìwé àṣẹ ìwakọ̀ àti ìforúkọsílẹ̀ ibí nìkan ni mo bo. Fún ọ̀rọ̀ mìíràn, jọ̀wọ́ kàn sí àjọ tí ó kan án tààrà.",
+    ack: "Kò tọ́pẹ́! Tí o bá ní ìbéèrè mìíràn nípa NIN, ìwé ìrìnnà, ìwé àṣẹ ìwakọ̀, ibí, ẹ̀kọ́ tàbí ìlera, mo wà níbí.",
+    fallback: "Èyí kọjá ohun tí mo lè ràn ọ́ lọ́wọ́ lórí rẹ̀. NIN, ìwé ìrìnnà, ìwé àṣẹ ìwakọ̀, ìforúkọsílẹ̀ ibí, ẹ̀kọ́ (JAMB àti WAEC) àti ìlera gbogbo ènìyàn ni mo bo. Fún ọ̀rọ̀ mìíràn, jọ̀wọ́ kàn sí àjọ tí ó kan án tààrà.",
     error: "Ìṣòro kan wáyé nígbà tí a ń wá ìdáhùn. Ṣàyẹ̀wò nẹ́tíwọ̀kì rẹ kí o gbìyànjú lẹ́ẹ̀kansí.",
     disclaimer: "Ìdáhùn wá láti inú ìwífún àjọ ìjọba · Ṣàyẹ̀wò owó lórí ojú òpó ìjọba · Àfihàn àdánwò ni",
     domains: [
@@ -422,39 +480,40 @@ const T = {
       { d: "passport", t: "Ìwé ìrìnnà", a: "NIS", q: "Bawo ni mo se le gba iwe irinna?" },
       { d: "licence", t: "Ìwé àṣẹ ìwakọ̀", a: "FRSC", q: "Bawo ni mo se le gba iwe ase iwako?" },
       { d: "birth", t: "Ìwé ẹ̀rí ibí", a: "NPC", q: "Bawo ni a se n forukosile omo tuntun?" },
+      { d: "education", t: "JAMB àti WAEC", a: "JAMB", q: "Bawo ni mo se le forukosile fun JAMB?" },
+      { d: "health", t: "Ìlera", a: "NHIA", q: "Nibo ni mo ti le gba abere ajesara ofe fun omo mi?" },
     ],
-    hello: "Ẹ káàbọ̀! Bèèrè ohunkóhun nípa iṣẹ́ mẹ́rin tí ó wà nísàlẹ̀ — nípa kíkọ tàbí ohùn. Tẹ àmì agbóhùnsáfẹ́fẹ́ lórí ìdáhùn èyíkéyìí láti gbọ́ ọ.",
-  },
-  ig: {
-    label: "Igbo",
-    title: "Ọrụ gọọmenti, n'asụsụ gị",
-    sub: "Azịza ziri ezi maka NIN, paspọtụ, ikike ịnya ụgbọ na ndebanye ọmụmụ. Enweghị onye etiti.",
-    placeholder: "Jụọ maka NIN, paspọtụ, ikike ma ọ bụ akwụkwọ ọmụmụ…",
-    listening: "Anyị na-edekọ olu… pịa igwe okwu ọzọ ma i kwuchaa",
-    transcribing: "Anyị na-ede ihe i kwuru…",
-    sources: "Ebe o si",
-    speak: "Gụọ ya n'olu", stop: "Kwụsị",
-    ack: "Nsogbu adịghị! Ọ bụrụ na ị nwere ajụjụ ọzọ gbasara NIN, paspọtụ, ikike ịnya ụgbọ ma ọ bụ akwụkwọ ọmụmụ, anọ m ebe a.",
-    fallback: "Nke ahụ gafere ihe m nwere ike inyere gị aka. Naanị NIN, paspọtụ, ikike ịnya ụgbọ na ndebanye ọmụmụ ka m na-akpọ. Maka ihe ndị ọzọ, biko gakwuru ụlọ ọrụ metụtara ya ozugbo.",
-    error: "Nsogbu mere mgbe anyị na-achọ azịza. Lelee netwọk gị ma nwaa ọzọ.",
-    disclaimer: "Azịza si n'ozi ụlọ ọrụ gọọmenti · Chọpụta ego ọnụ na websaiti gọọmenti · Ọ bụ ngosi nnwale",
-    domains: [
-      { d: "nin", t: "Ndebanye NIN", a: "NIMC", q: "Kedu ka m ga-esi debanye aha maka NIN?" },
-      { d: "passport", t: "Paspọtụ", a: "NIS", q: "Kedu ka m ga-esi nweta paspotu njem mba ozo?" },
-      { d: "licence", t: "Ikike ịnya ụgbọ", a: "FRSC", q: "Kedu ka m ga-esi nweta ikike inya ugbo ala?" },
-      { d: "birth", t: "Akwụkwọ ọmụmụ", a: "NPC", q: "Kedu ka e si edebanye omumu nwa?" },
-    ],
-    hello: "Nnọọ! Jụọ m ihe ọbụla gbasara ọrụ anọ ndị dị n'okpuru — site n'ide ma ọ bụ olu. Pịa akara ọkà okwu na azịza ọbụla ka ị nụrụ ya n'olu.",
+    hello: "Ẹ káàbọ̀! Bèèrè ohunkóhun nípa iṣẹ́ mẹ́fà tí ó wà nísàlẹ̀, nípa kíkọ tàbí ohùn. Tẹ àmì agbóhùnsáfẹ́fẹ́ lórí ìdáhùn èyíkéyìí láti gbọ́ ọ.",
   },
 };
 
-const AGENCY_COLOR = { NIMC: "#0B6B3A", NIS: "#1D4E89", FRSC: "#8A5A00", NPC: "#5B3A8E" };
-const STT_LANG = { en: "en-NG", pcm: "en-NG", ha: "ha-NG", yo: "yo-NG", ig: "ig-NG" };
-const TTS_LANG = { en: "en-NG", pcm: "en-NG", ha: "ha", yo: "yo", ig: "ig" };
+/* Language auto-detection for the Auto mode: Yoruba by diacritics or
+   function words, Pidgin by marker words and phrases, else English. */
+function detectLang(q) {
+  if (/[ẹọṣ]|[\u0300\u0301\u0323]|[àèìòùáéíóú]/i.test(q.normalize("NFD").normalize("NFC"))) {
+    if (/[ẹọṣ\u0323]/i.test(q.normalize("NFD").normalize("NFC")) || /[àèìòùáéíóú]/i.test(q)) return "yo";
+  }
+  const toks = q.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z\s']/g, " ").split(/\s+/).filter(Boolean);
+  const PCM = new Set("dey wetin abeg wan fit don pikin dem sabi wahala sha una oya comot abi wey naim".split(" "));
+  const YO = new Set(("bawo ni mo se le gba elo owo iwe irinna ibi ajesara ilera idanwo esi forukosile iforukosile " +
+    "nibo kini ilana lati omo fun sile ti mi ri awon nilo gbodo sonu kaaro ekaaro pele ese jowo ati sugbon tuntun abere ofe").split(" "));
+  let pc = 0, yc = 0;
+  toks.forEach((t) => { if (PCM.has(t)) pc++; if (YO.has(t)) yc++; });
+  if (/\bgo (take|do|collect|register|join)\b|\bno (dey|wahala|vex)\b|\be (dey|don|go|free)\b|\bhow far\b|\bdem (dey|go)\b|\bi go\b/.test(q.toLowerCase())) pc += 2;
+  if (pc >= 1 && pc >= yc) return "pcm";
+  if (yc >= 2 || (yc >= 1 && toks.length <= 2)) return "yo";
+  return "en";
+}
+
+const AGENCY_COLOR = { NIMC: "#0B6B3A", NIS: "#1D4E89", FRSC: "#8A5A00", NPC: "#5B3A8E", JAMB: "#A62639", WAEC: "#0F7173", NHIA: "#C05299", NPHCDA: "#3A7D44" };
+const STT_LANG = { en: "en-NG", pcm: "en-NG", yo: "yo-NG" };
+const TTS_LANG = { en: "en-NG", pcm: "en-NG", yo: "yo" };
 
 /* ---------- COMPONENT ---------- */
 export default function IndigenousLanguageChatbot() {
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState("auto");
+  const [detected, setDetected] = useState("en");
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
@@ -466,10 +525,14 @@ export default function IndigenousLanguageChatbot() {
   const scrollRef = useRef(null);
   const recRef = useRef(null);
   const viaVoiceRef = useRef(false);
-  const langRef = useRef("en");
+  const langRef = useRef("auto");
+  const detectedRef = useRef("en");
   const index = useMemo(() => buildIndex(KB), []);
-  const t = T[lang];
+  const uiLang = lang === "auto" ? detected : lang;
+  const t = T[uiLang];
   langRef.current = lang;
+  detectedRef.current = detected;
+  const resolveLang = () => (langRef.current === "auto" ? detectedRef.current : langRef.current);
 
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -564,7 +627,7 @@ export default function IndigenousLanguageChatbot() {
       const audio = await blobToWavBase64(blob);
       const r = await fetch("/api/stt", {
         method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ audio, lang: langRef.current }),
+        body: JSON.stringify({ audio, lang: langRef.current === "auto" ? "auto" : langRef.current }),
       });
       if (!r.ok) throw new Error("stt " + r.status);
       const data = await r.json();
@@ -584,7 +647,7 @@ export default function IndigenousLanguageChatbot() {
   const startWebkit = () => {
     if (!recRef.current) { setVoiceErr("Voice input isn't available in this browser. Typing still works."); return; }
     try {
-      recRef.current.lang = STT_LANG[langRef.current];
+      recRef.current.lang = STT_LANG[langRef.current] || "en-NG";
       recRef.current.start();
       setListening(true);
     } catch { setListening(false); }
@@ -630,11 +693,11 @@ export default function IndigenousLanguageChatbot() {
     setSpeakingIdx(-1);
   };
 
-  const browserSpeak = (clean, idx) => {
+  const browserSpeak = (clean, idx, mLang) => {
     if (!("speechSynthesis" in window)) { setSpeakingIdx(-1); return; }
     const synth = window.speechSynthesis;
     const u = new SpeechSynthesisUtterance(clean);
-    const want = TTS_LANG[langRef.current];
+    const want = TTS_LANG[mLang || resolveLang()] || "en-NG";
     const voices = synth.getVoices();
     const match =
       voices.find((v) => v.lang.toLowerCase().startsWith(want.toLowerCase())) ||
@@ -647,12 +710,12 @@ export default function IndigenousLanguageChatbot() {
     synth.speak(u);
   };
 
-  const speak = async (text, idx) => {
+  const speak = async (text, idx, mLang) => {
     if (speakingIdx === idx) { stopAudio(); return; }
     stopAudio();
     const clean = text.replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF]/gu, "");
     setSpeakingIdx(idx);
-    const L = langRef.current;
+    const L = mLang || resolveLang();
     const key = `${L}:${idx}:${clean.slice(0, 40)}`;
     try {
       if (!cloudTtsOk.current) throw new Error("cloud tts disabled");
@@ -673,7 +736,8 @@ export default function IndigenousLanguageChatbot() {
       await a.play();
     } catch {
       cloudTtsOk.current = false; // stop retrying a dead endpoint this session
-      browserSpeak(clean, idx);
+      if (L !== "en") setVoiceErr("Native voice unavailable, using the browser voice. Check SPITCH_API_KEY on the server.");
+      browserSpeak(clean, idx, L);
     }
   };
 
@@ -706,15 +770,16 @@ export default function IndigenousLanguageChatbot() {
     const wasVoice = viaVoiceRef.current;
     viaVoiceRef.current = false;
     setInput("");
-    setMessages((m) => [...m, { role: "user", text: query }]);
+    const L = langRef.current === "auto" ? detectLang(query) : langRef.current;
+    if (langRef.current === "auto") { setDetected(L); detectedRef.current = L; }
+    setMessages((m) => [...m, { role: "user", text: query, lang: L }]);
     setBusy(true);
     const t0 = performance.now();
-    const L = langRef.current;
     if (isGreeting(query) || isAck(query)) {
-      const social = { role: "bot", text: isGreeting(query) ? T[L].hello : T[L].ack, sources: [], ms: 0 };
+      const social = { role: "bot", text: isGreeting(query) ? T[L].hello : T[L].ack, sources: [], ms: 0, lang: L };
       setMessages((m) => {
         const next = [...m, social];
-        if (wasVoice) setTimeout(() => speak(social.text, next.length - 1), 250);
+        if (wasVoice) setTimeout(() => speak(social.text, next.length - 1, L), 250);
         return next;
       });
       setBusy(false);
@@ -738,23 +803,23 @@ export default function IndigenousLanguageChatbot() {
       }
       let botMsg;
       if (!hits.length) {
-        botMsg = { role: "bot", text: T[L].fallback, sources: [], ms: Math.round(performance.now() - t0) };
+        botMsg = { role: "bot", text: T[L].fallback, sources: [], ms: Math.round(performance.now() - t0), lang: L };
       } else {
         const history = messages.map((m) => ({ role: m.role === "user" ? "user" : "assistant", text: m.text }));
         const answer = await generateAnswer(query, hits, L, history);
         const seen = new Set();
         const sources = hits.filter((h) => (seen.has(h.entry.src) ? false : seen.add(h.entry.src)))
           .map((h) => ({ agency: h.entry.agency, src: h.entry.src }));
-        botMsg = { role: "bot", text: answer || T[L].fallback, sources, ms: Math.round(performance.now() - t0) };
+        botMsg = { role: "bot", text: answer || T[L].fallback, sources, ms: Math.round(performance.now() - t0), lang: L };
       }
       setMessages((m) => {
         const next = [...m, botMsg];
-        if (wasVoice) setTimeout(() => speak(botMsg.text, next.length - 1), 250);
+        if (wasVoice) setTimeout(() => speak(botMsg.text, next.length - 1, L), 250);
         return next;
       });
     } catch (err) {
       const hint = err && err.message && err.message.startsWith("Generation") ? `\n(${err.message})` : "";
-      setMessages((m) => [...m, { role: "bot", text: T[L].error + hint, sources: [], ms: 0 }]);
+      setMessages((m) => [...m, { role: "bot", text: T[L].error + hint, sources: [], ms: 0, lang: L }]);
     }
     setBusy(false);
   }
@@ -781,7 +846,7 @@ export default function IndigenousLanguageChatbot() {
         .hero-s{font-size:14px;font-weight:300;color:#BCD6C4;max-width:48ch;line-height:1.55;margin:0;}
         .wrap{max-width:760px;margin:0 auto;width:100%;flex:1;display:flex;flex-direction:column;padding:0 14px;}
         .chips{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:-16px 0 14px;position:relative;z-index:2;}
-        @media(min-width:640px){.chips{grid-template-columns:repeat(4,1fr);}}
+        @media(min-width:640px){.chips{grid-template-columns:repeat(3,1fr);}}
         .chip{border:1px solid #E1E7E0;background:#fff;border-radius:14px;padding:12px;text-align:left;box-shadow:0 1px 2px rgba(20,40,28,.06),0 8px 20px -12px rgba(20,40,28,.18);transition:transform .22s cubic-bezier(.34,1.56,.64,1),box-shadow .22s ease;}
         .chip:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(20,40,28,.08),0 14px 28px -12px rgba(20,40,28,.26);}
         .chip:active{transform:translateY(-1px) scale(.98);}
@@ -828,9 +893,10 @@ export default function IndigenousLanguageChatbot() {
           <div className="mast-row">
             <div className="brand"><div className="seal">₦</div>CivicSpeak NG</div>
             <div className="langtog" role="group" aria-label="Language">
-              {Object.keys(T).map((code) => (
-                <button key={code} className={lang === code ? "on" : ""} onClick={() => { setLang(code); try { window.speechSynthesis.cancel(); } catch {} setSpeakingIdx(-1); }}>
-                  {T[code].label}
+              {["auto", ...Object.keys(T)].map((code) => (
+                <button key={code} className={lang === code ? "on" : ""}
+                  onClick={() => { setLang(code); stopAudio(); }}>
+                  {code === "auto" ? "✦ Auto" : T[code].label}
                 </button>
               ))}
             </div>
@@ -859,7 +925,7 @@ export default function IndigenousLanguageChatbot() {
                 {m.role === "bot" && (
                   <div className="meta">
                     {ttsOk && (
-                      <button className={`spk ${speakingIdx === i ? "on" : ""}`} onClick={() => speak(m.text, i)}>
+                      <button className={`spk ${speakingIdx === i ? "on" : ""}`} onClick={() => speak(m.text, i, m.lang)}>
                         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
                         </svg>

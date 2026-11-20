@@ -3,7 +3,7 @@
 import Spitch, { toFile } from "spitch";
 
 export const config = { api: { bodyParser: { sizeLimit: "8mb" } } };
-const LANG = { en: "en", ha: "ha", yo: "yo", ig: "ig", pcm: "en" };
+const LANG = { en: "en", yo: "yo", pcm: "en" }; // "auto": omitted, Spitch detects
 
 export default async function handler(req, res) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
